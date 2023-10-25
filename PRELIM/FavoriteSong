@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class FavoriteSong{
+   public static void main(String[] args){
+      System.out.println("I wish you bluebirds in the spring");
+      System.out.println("To give your heart a song to sing");
+      System.out.println("And then a kiss, but more than this");
+      System.out.println("I wish you love."); 
+   }
+}
