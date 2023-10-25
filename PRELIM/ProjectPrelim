@@ -1,1 +1,129 @@
-P
+/** Jhana Marie D. Catabas
+    BSIT 2B **/
+    
+import java.util.*;
+class GenerateRoute {
+   private final double ROUTE_ONE = 140.2;
+   private final double ROUTE_TWO = 142.4;
+   private final double ROUTE_THREE = 153.2;
+   private double distance;
+   private int speed;
+
+   public void start() {
+      Scanner sc = new Scanner(System.in);
+      int speedInput;
+      System.out.println("HEY, WELCOME!!");
+      System.out.println("Route to MoalBoal\n");
+      displayDefaultRoute();
+   
+      int isBariliObstructed;
+      do {
+         System.out.print("Is Barili (Route 4.1) obstructed? (Y = 1 or N = 0): ");
+         while (!sc.hasNextInt()) {
+            sc.next(); // Clear the invalid input
+            System.out.println("Invalid input. Please enter 0 or 1 only.");
+            System.out.print("Is Barili (Route 4.1) obstructed? (Y = 1 or N = 0): ");
+         }
+         isBariliObstructed = sc.nextInt();
+      } while (isBariliObstructed != 0 && isBariliObstructed != 1);
+   
+      if (isBariliObstructed == 0) {
+         do {
+            System.out.print("How fast are you going (km/hour)? ");
+            while (!sc.hasNextInt()) {
+               sc.next(); // Clear the invalid input
+               System.out.println("Invalid input. Please enter a numeric value for speed.");
+               System.out.print("How fast are you going (km/hour)? ");
+            }
+            speedInput = sc.nextInt();
+         } while (speedInput < 0); // Ensure the speed is a positive value
+      
+         speed = speedInput;
+         distance = ROUTE_ONE;
+         System.out.println("\nRecommended Route:\n" +
+                "Minglanilla(Route 1)\n" +
+                "San Fernando(Route 2)\n" +
+                "CarCar(Route 3)\n" +
+                "Barili(Route 4.1)\n" +
+                "Dumanjug(Route 4.1.1)\n" +
+                "Alcantara(Route 4.1.2)\n" +
+                "Moalboal(Destination)\n");
+      } 
+      else {
+         int isDumanjugObstructed;
+         do {
+            System.out.print("Is Dumanjug (Route 4.2.1) obstructed? (Y = 1 or N = 0): ");
+            while (!sc.hasNextInt()) {
+               sc.next(); // Clear the invalid input
+               System.out.println("Invalid input. Please enter 0 or 1 only.");
+               System.out.print("Is Dumanjug (Route 4.2.1) obstructed? (Y = 1 or N = 0): ");
+            }
+            isDumanjugObstructed = sc.nextInt();
+         } while (isDumanjugObstructed != 0 && isDumanjugObstructed != 1);
+      
+         do {
+            System.out.print("How fast are you going (km/hour)? ");
+            while (!sc.hasNextInt()) {
+               sc.next(); // Clear the invalid input
+               System.out.println("Invalid input. Please enter a numeric value for speed.");
+               System.out.print("How fast are you going (km/hour)? ");
+            }
+            speedInput = sc.nextInt();
+         } while (speedInput < 0); // Ensure the speed is a positive value
+         speed = speedInput;// Clear the invalid input
+      // Ensure the speed is a positive value
+         if (isDumanjugObstructed == 0) {
+         
+            distance = ROUTE_TWO;
+            System.out.println("\nRecommended Route:\n" +
+                   "Minglanilla(Route 1)\n" +
+                   "San Fernando(Route 2)\n" +
+                   "CarCar(Route 3)\n" +
+                   "Sibonga(Route 4.2)\n" +
+                   "Dumanjug (Route 4.2.1)\n" +
+                   "Alcantara (Route 4.2.2)" +
+                   "\nMoalboal(Destination)\n");
+         } 
+         else {
+         
+            distance = ROUTE_THREE;
+            System.out.println("\nRecommended Route:\n" +
+                   "Minglanilla(Route 1)\n" +
+                   "San Fernando(Route 2)\n" +
+                   "CarCar(Route 3)\n" +
+                   "Sibonga(Route 4.2)\n" +
+                   "Argao(Route 5)\n" +
+                   "Ronda(Route 5.1)\n" +
+                   "Alcantara (Route 5.2)" +
+                   "\nMoalboal(Destination)\n");
+         }
+      }
+   
+      System.out.println("Travel Ends...\n");
+      displayAdditionalData();
+   }
+   private void displayDefaultRoute() {
+      System.out.println("Default route:");
+      System.out.println("Cebu City (Start)");
+      System.out.println("Minglanilla (Route 1)");
+      System.out.println("San Fernando (Route 2)");
+      System.out.println("Carcar (Route 3)");
+      System.out.println("Barili (Route 4.1)");
+      System.out.println("Dumanjug (Route 4.1.1)");
+      System.out.println("Alcantara (Route 4.1.2)");
+      System.out.println("Moalboal (End)\n");
+   }
+   public void displayAdditionalData() {
+      System.out.println("Additional Data:");
+      System.out.println("Speed: " + speed + " km/hour");
+      double eta = distance / speed;
+      System.out.println("Distance: " + distance + " km");
+      System.out.println("ETA: " + eta + " mins");
+   }
+}
+public class PrelimProject {
+   public static void main(String[] args) {
+      GenerateRoute r = new GenerateRoute();
+      r.start();
+   }
+}
