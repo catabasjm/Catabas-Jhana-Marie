@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class Student{
+   public static void main(String[] args){
+      Scanner scan = new Scanner(System.in);
+      
+      Person p = new Person();
+      
+      System.out.println("Enter first name: ");
+      p.setFirstName(scan.nextLine());
+
+      System.out.println("Enter middle name: ");
+      p.setMiddleName(scan.nextLine());
+
+      System.out.println("Enter last name: ");
+      p.setLastName(scan.nextLine());
+      
+      System.out.println("Enter suffix: ");
+      p.setSuffix(scan.nextLine());
+      
+      System.out.println(p.toString());
+      
+      System.out.println("Full name: " + p.getFullName());
+   
+   }
+}
+class Person{
+   private String first_name;
+   private String middle_name;
+   private String last_name;
+   private String suffix;
+   
+   public void setFirstName(String firstName) {
+       first_name = firstName;
+    }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public void setMiddleName(String middleName) {
+        middle_name = middleName;
+    }
+
+    public String getMiddleName() {
+        return middle_name;
+    }
+
+    public void setLastName(String lastName) {
+        last_name = lastName;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+    public void setSuffix(String sufx) {
+        suffix = sufx;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+    @Override
+    public String toString() {
+        return "\nFirst Name: " + first_name +
+                "\nMiddle Name: " + middle_name + 
+                "\nLast Name: " + last_name + 
+                "\nSuffix: " + suffix;
+    }
+    public String getFullName(){
+      return first_name +" "+ middle_name +" "+ last_name +" "+ suffix;
+
+    }
+}
