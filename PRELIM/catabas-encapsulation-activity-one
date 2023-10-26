@@ -16,6 +16,7 @@ public class Encapsulation{
       p.setLastName(scan.nextLine());
 
       System.out.println("Age: ");
+      p.setAge(scan.nextInt());
       scan.nextLine();
 
       System.out.println("Birthdate: ");
