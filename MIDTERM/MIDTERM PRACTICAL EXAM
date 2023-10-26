@@ -1,0 +1,376 @@
+/**
+Jhana Marie Catabas
+BSIT-2B
+**/
+import java.util.*;
+
+public class Student{
+    private int id_number;
+    private String first_name;
+    private String middle_name;
+    private String last_name;
+    private String suffix;
+    private int age;
+    private int year_level;
+    private int phone_num;
+    private String email;
+
+    public void setIdNumber(int idNumber) {
+        id_number = idNumber;
+    }
+
+    public int getIdNumber() {
+        return id_number;
+    }
+
+    public void setFirstName(String fName) {
+        first_name = fName;
+    }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public void setMiddleName(String mName) {
+        middle_name = mName;
+    }
+
+    public String getMiddleName() {
+        return middle_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+    public void setLastName(String lName) {
+        last_name = lName;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getYearLevel() {
+        return year_level;
+    }
+    public void setYearLevel(int yrlevel) {
+        year_level = yrlevel;
+    }
+
+    public int getPhoneNum() {
+        return phone_num;
+    }
+    public void setPhoneNum(int pNum) {
+        phone_num = pNum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String toString() {
+        return "\nStudent ID No.: " + id_number +
+                "\nFirst Name: " + first_name +
+                "\nMiddle Name: " + middle_name +
+                "\nLast Name: " + last_name +
+                "\nSuffix: " + suffix +
+                "\nAge: " + age +
+                "\nYear Level: " + year_level +
+                "\nPhone Number: " + phone_num +
+                "\nEmail: " + email;
+    }
+}
+class Course{
+
+    private String course_name;
+    private String course_code;
+    private String department;
+
+    public String getCourseName() {
+        return course_name;
+    }
+
+    public void setCourseName(String courseName) {
+        course_name = courseName;
+    }
+
+    public String getCourseCode() {
+        return course_code;
+    }
+
+    public void setCourseCode(String courseCode) {
+        course_code = courseCode;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String toString() {
+        return "Course Name: " + getCourseName() + "\nCourse Code: " + getCourseCode() + "\nDepartment: " + getDepartment();
+    }
+
+}
+class Record {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Student student = null;
+        Course c = new Course();
+        Record r = new Record();
+
+        while (true) {
+            System.out.println("=================================\n");
+            System.out.println("Student Record Management App v1\n");
+            System.out.println("Selection Menu:");
+            System.out.println("-----------------------------------");
+            System.out.println("1. Create a Student Record");
+            System.out.println("2. Update Student Profile Details");
+            System.out.println("3. Update Student Course Details");
+            System.out.println("4. Display Student Record");
+            System.out.println("0. Exit");
+            System.out.println("-----------------------------------");
+            System.out.println("Enter selection:_ ");
+
+            int choice = scan.nextInt();
+            scan.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    student = createStudentRecord(scan);
+                    System.out.println("Student Record Created:");
+                    break;
+                case 2:
+                    if (student != null) {
+                        updateStudentProfileDetails(scan, student);
+                    } else {
+                        System.out.println("No student record exists. Please create a record first.");
+                    }
+                    break;
+                case 3:
+                    if (student != null) {
+                        c = updateStudentCourseDetails(scan, student);
+                    } else {
+                        System.out.println("No student record exists. Please create a record first.");
+                    }
+                    break;
+                case 4:
+                    if (student != null) {
+                        displayStudentRecord(scan, student, c); // Move this line inside the loop
+                    } else {
+                        System.out.println("No student record exists. Please create a record first.");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Exiting the program.");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    public static Student createStudentRecord(Scanner scan) {
+        Student s = new Student();
+
+        System.out.println("Enter ID number: ");
+        s.setIdNumber(scan.nextInt());
+        scan.nextLine();
+
+        System.out.println("Enter first name: ");
+        s.setFirstName(scan.nextLine());
+
+        System.out.println("Enter middle name: ");
+        s.setMiddleName(scan.nextLine());
+
+        System.out.println("Enter last name: ");
+        s.setLastName(scan.nextLine());
+
+        System.out.println("Enter suffix: ");
+        s.setSuffix(scan.nextLine());
+
+        System.out.println("Enter age: ");
+        s.setAge(scan.nextInt());
+
+        System.out.println("Enter year level: ");
+        s.setYearLevel(scan.nextInt());
+
+        System.out.println("Enter phone number: ");
+        s.setPhoneNum(scan.nextInt());
+        scan.nextLine();
+
+        System.out.println("Enter email: ");
+        s.setEmail(scan.nextLine());
+
+        return s;
+    }
+
+    public static void updateStudentProfileDetails(Scanner scan, Student student) {
+        boolean continueUpdating = true;
+
+        while (continueUpdating) {
+            System.out.println("=================================\n");
+            System.out.println("Student Record Management App v1\n");
+            System.out.println("Student profile Details Update Selection Menu");
+            System.out.println("-----------------------------------");
+            System.out.println("1. Update Student ID No.");
+            System.out.println("2. Update First name");
+            System.out.println("3. Update Middle name");
+            System.out.println("4. Update Last name");
+            System.out.println("5. Update Suffix");
+            System.out.println("6. Update Age");
+            System.out.println("7. Update Year level");
+            System.out.println("8. Update Phone number");
+            System.out.println("9. Update Email");
+            System.out.println("0. Return");
+            System.out.println("-----------------------------------");
+            System.out.println("Enter selection:_ ");
+
+            int choice = scan.nextInt();
+            scan.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter updated ID no.: ");
+                    student.setIdNumber(scan.nextInt());
+                    break;
+                case 2:
+                    System.out.println("Enter updated first name: ");
+                    student.setFirstName(scan.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Enter updated middle name: ");
+                    student.setMiddleName(scan.nextLine());
+                    break;
+                case 4:
+                    System.out.println("Enter updated last name: ");
+                    student.setLastName(scan.nextLine());
+                    break;
+                case 5:
+                    System.out.println("Enter updated suffix: ");
+                    student.setSuffix(scan.nextLine());
+                    break;
+                case 6:
+                    System.out.println("Enter updated age: ");
+                    student.setAge(scan.nextInt());
+                    scan.nextLine();
+                    break;
+                case 7:
+                    System.out.println("Enter updated year level: ");
+                    student.setYearLevel(scan.nextInt());
+                    scan.nextLine();
+                    break;
+                case 8:
+                    System.out.println("Enter updated phone number: ");
+                    student.setPhoneNum(scan.nextInt());
+                    scan.nextLine();
+                    break;
+                case 9:
+                    System.out.println("Enter updated email: ");
+                    student.setEmail(scan.nextLine());
+                    break;
+                case 0:
+                    continueUpdating = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    public static Course updateStudentCourseDetails(Scanner scan, Student student) {
+        Course c = new Course();
+
+        System.out.println("=================================\n");
+        System.out.println("Update Student Course Details");
+        System.out.println("-----------------------------------");
+        System.out.println("Select Student Course Details:");
+        System.out.println("1. Bachelor of Science in Information Technology (BSIT)");
+        System.out.println("2. Bachelor of Science in Computer Science (BSCS)");
+        System.out.println("3. Associate of Computer Technology (ACT)");
+        System.out.println("4. Bachelor of Science in Mechanical Engineering (BSME)");
+        System.out.println("5. Bachelor of Science in Civil Engineering (BSCE)");
+        System.out.println("-----------------------------------");
+        System.out.println("Enter selection:_ ");
+
+        int choice = scan.nextInt();
+        scan.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 1:
+                System.out.println("You have selected: Bachelor of Science in Information Technology (BSIT).");
+                c.setCourseName("Bachelor of Science in Information Technology");
+                c.setCourseCode("BSIT");
+                c.setDepartment("College of Computer Studies");
+                break;
+            case 2:
+                System.out.println("You have selected: Bachelor of Science in Computer Science (BSCS).");
+                c.setCourseName("Bachelor of Science in Computer Science");
+                c.setCourseCode("BSCS");
+                c.setDepartment("College of Computer Studies");
+                break;
+            case 3:
+                System.out.println("You have selected: Associate of Computer Technology (ACT).");
+                c.setCourseName("Associate of Computer Technology");
+                c.setCourseCode("ACT");
+                c.setDepartment("College of Computer Studies");
+                break;
+            case 4:
+                System.out.println("You have selected: Bachelor of Science in Mechanical Engineering (BSME).");
+                c.setCourseName("Bachelor of Science in Mechanical Engineering");
+                c.setCourseCode("BSME");
+                c.setDepartment("College of Engineering");
+                break;
+            case 5:
+                System.out.println("You have selected: Bachelor of Science in Civil Engineering (BSCE).");
+                c.setCourseName("Bachelor of Science in Civil Engineering");
+                c.setCourseCode("BSCE");
+                c.setDepartment("College of Engineering");
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+        System.out.println("Course details updated.");
+        return c;
+    }
+
+    public static void displayStudentRecord(Scanner scan, Student student, Course course) {
+        System.out.println("=================================\n");
+        System.out.println("Student Record Management App v1\n");
+        System.out.println("Student profile Details Update Selection Menu");
+        System.out.println("-----------------------------------");
+        System.out.println("0. Exit");
+        System.out.println("-----------------------------------");
+        System.out.println("Student Profile Details:");
+        System.out.println(student.toString());
+        System.out.println("\nStudents Course Details:");
+        System.out.println(course.toString());
+        System.out.println("-----------------------------------");
+        System.out.println("Enter selection:_ ");
+
+        int choice = scan.nextInt();
+        scan.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 0:
+                break;
+            default:
+                System.out.println("Invalid choice. Returning to the main menu.");
+        }
+    }
+}
+
