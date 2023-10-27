@@ -351,7 +351,7 @@ class Record {
     public static void displayStudentRecord(Scanner scan, Student student, Course course) {
         System.out.println("=================================\n");
         System.out.println("Student Record Management App v1\n");
-        System.out.println("Student profile Details Update Selection Menu");
+        System.out.println("Student Record");
         System.out.println("-----------------------------------");
         System.out.println("0. Exit");
         System.out.println("-----------------------------------");
